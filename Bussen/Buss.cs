@@ -43,20 +43,20 @@ namespace Bussen
                 {
                     case ConsoleKey.D1:
                         AddPassenger(); //Method for adding passenger. 
-                        running = false;
                         break;
+
                     case ConsoleKey.D2:
                         SubmenuPassengers(); //Method for submenu for interactions. 
-                        running = false;
                         break;
+
                     case ConsoleKey.D3:
                         ShowPassengers(); //Method for printing current passengers onboard.
-                        running = false;
                         break;
+
                     case ConsoleKey.D0:
                         Console.WriteLine("Thanks for playing!");
-                        running = false;
                         return;
+
                     default:
                         {
                             Console.WriteLine("\r\n");
@@ -337,20 +337,26 @@ namespace Bussen
             switch (userInput.Key)
             {
                 case ConsoleKey.T:
+                    Console.WriteLine("\r\n");
                     Console.WriteLine($"The total age of all passengers on board is {TotalAgeOfPassengers()} years!");
                     Console.WriteLine("\r\n");
                     SubmenuPassengers();
                     break;
+
                 case ConsoleKey.A:
+                    Console.WriteLine("\r\n");
                     Console.WriteLine($"The average age of all passengers onboard is {AverageAgeOfPassengers()} years!");
                     Console.WriteLine("\r\n");
                     SubmenuPassengers();
                     break;
+
                 case ConsoleKey.H:
+                    Console.WriteLine("\r\n");
                     Console.WriteLine($"The oldest person on the bus is {HighestAge()} years old!");
                     Console.WriteLine("\r\n");
                     SubmenuPassengers();
                     break;
+
                 case ConsoleKey.F:
 
                     Console.WriteLine($"Enter the first age to look for!");
@@ -363,15 +369,19 @@ namespace Bussen
                     Console.WriteLine("\r\n");
                     SubmenuPassengers();
                     break;
+
                 case ConsoleKey.S:
                     SortBusByAge();
+                    Console.WriteLine("\r\n");
                     Console.WriteLine($"Passengers were sorted by their age, select 'Current Passengers' option from the Main Menu to see the result!");
                     Console.WriteLine("\r\n");
                     SubmenuPassengers();
                     break;
+
                 case ConsoleKey.B:
                     Run();
                     break;
+
                 default:
                     {
                         Console.WriteLine("\r\n");
