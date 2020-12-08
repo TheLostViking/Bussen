@@ -29,10 +29,10 @@ namespace Bussen
         //Main Menu of the Program - DONE!
         public void Run()
         {
-            bool running = true;
-            while(running == true)
+          
+            while(true)
             {
-                Console.WriteLine("---Welcome! Please choose your action!--- \r\n");
+                Console.WriteLine("---Welcome! Please choose your action!---\n");
                 Console.WriteLine($"Press [1] to Add a Passenger.");
                 Console.WriteLine($"Press [2] for Passenger interaction.");
                 Console.WriteLine($"Press [3] list all the current Passengers.");
@@ -59,8 +59,10 @@ namespace Bussen
 
                     default:
                         {
-                            Console.WriteLine("\r\n");
-                            Console.WriteLine($"Please use valid options! \r\n");
+                            Console.WriteLine("\n");
+                            Console.WriteLine($"Please use valid options!\n");
+                            Console.WriteLine("Press any key...");
+                            Console.ReadKey(true);
                             break;
                         }
                 }
@@ -73,7 +75,7 @@ namespace Bussen
             string newName;
             string newSex = "";
             int newAge;
-            Console.WriteLine("--- ADD PASSENGER ---\r\n");
+            Console.WriteLine("--- ADD PASSENGER ---\n");
             while (true)
             {
                 Console.Write("Enter name of new passenger: ");
@@ -111,6 +113,9 @@ namespace Bussen
                 catch
                 {
                     Console.WriteLine("Invalid input! Only digits please!");
+                    Console.WriteLine("Press any key...");
+                    Console.ReadKey(true);
+
                 }
             }
             while (true)
@@ -140,9 +145,11 @@ namespace Bussen
                         }
                     default:
                         {
-                            Console.WriteLine("\r\n");
+                            Console.WriteLine("\n");
                             Console.WriteLine("Use only valid options!");
-                            Console.WriteLine("\r\n");
+                            Console.WriteLine("\n");
+                            Console.WriteLine("Press any key...");
+                            Console.ReadKey(true);
                             continue;
                         }
                 }
@@ -159,11 +166,13 @@ namespace Bussen
                         continue;
                     }
                 }
-                Console.WriteLine("\r\n");
-                Console.WriteLine("Passanger added!");
-                Console.WriteLine("\r\n");
+                Console.WriteLine("\n");
+                Console.WriteLine("Passanger added!");               
                 break;
             }
+            Console.WriteLine("Press any key to return to main menu...");
+            Console.ReadKey(true);
+            
             
         }
         //Prints all the current passangers + empty seats - DONE!
@@ -171,28 +180,29 @@ namespace Bussen
         {
             Console.Clear();
             Console.WriteLine("--- Current Passengers ---");
-            Console.WriteLine("\r\n");
-            int seatNumber = 1;
+            Console.WriteLine("\n");
+          
+            numberOfPassengers = 0; //Reset for passenger counting.
 
-            foreach (Passenger person in Seats)
+            for (int i = 0; i < Seats.Length; i++)
             {
-
-                if (person == null)
+                Passenger passenger = Seats[i];
+                if (passenger == null)
                 {
-                    Console.WriteLine("Seatnumber {0}, this seat is empty!", seatNumber);
+                    Console.WriteLine($"Seatnumber {i + 1}, this seat is empty!");
                 }
                 else
                 {
-                    Console.WriteLine($"Here sits {person.Name}. A {person.Sex} at {person.Age} years of age!");
+                    Console.WriteLine($"Seatnumber {i + 1}, {passenger.Name}. A {passenger.Sex} at {passenger.Age} years of age!");
                     numberOfPassengers++;
                 }
-                seatNumber++;
             }
-            Console.WriteLine("\r\n");
-            Console.WriteLine($"There's a total of {numberOfPassengers} passengers onboard!");
-            Console.WriteLine("\r\n");
+            Console.WriteLine("\n");
+            Console.WriteLine($"\nThere's a total of {numberOfPassengers} passengers onboard!");
+            Console.WriteLine("\n");
 
-            Run();
+            Console.WriteLine("Press any key to return to main menu...");
+            Console.ReadKey(true);
         }
 
         //Finds the total age of all current passengers. - DONE
@@ -325,7 +335,7 @@ namespace Bussen
         private void SubmenuPassengers()
         {
 
-            Console.WriteLine("--- Passenger Interaction --- \r\n");
+            Console.WriteLine("--- Passenger Interaction --- \n");
             Console.WriteLine("Press [T] for total age of all passengers onbard.");
             Console.WriteLine("Press [A] for average age of all passengers onbard.");
             Console.WriteLine("Press [H] for the highest age of a person onboard.");
@@ -337,56 +347,67 @@ namespace Bussen
             switch (userInput.Key)
             {
                 case ConsoleKey.T:
-                    Console.WriteLine("\r\n");
+                    Console.WriteLine("\n");
                     Console.WriteLine($"The total age of all passengers on board is {TotalAgeOfPassengers()} years!");
-                    Console.WriteLine("\r\n");
-                    SubmenuPassengers();
+                    Console.WriteLine("\n");
+
+                    Console.WriteLine("Press any key to return to the main menu...");
+                    Console.ReadKey(true);
                     break;
 
                 case ConsoleKey.A:
-                    Console.WriteLine("\r\n");
+                    Console.WriteLine("\n");
                     Console.WriteLine($"The average age of all passengers onboard is {AverageAgeOfPassengers()} years!");
-                    Console.WriteLine("\r\n");
-                    SubmenuPassengers();
+                    Console.WriteLine("\n");
+
+                    Console.WriteLine("Press any key to return to the main menu..."); 
+                    Console.ReadKey(true);
                     break;
 
                 case ConsoleKey.H:
-                    Console.WriteLine("\r\n");
+                    Console.WriteLine("\n");
                     Console.WriteLine($"The oldest person on the bus is {HighestAge()} years old!");
-                    Console.WriteLine("\r\n");
-                    SubmenuPassengers();
+                    Console.WriteLine("\n");
+
+                    Console.WriteLine("Press any key to return to the main menu..."); 
+                    Console.ReadKey(true);
                     break;
 
                 case ConsoleKey.F:
-
-                    Console.WriteLine($"Enter the first age to look for!");
+                    Console.WriteLine("\n");
+                    Console.Write($"Enter the first age to look for!");
                     int firstAge = int.Parse(Console.ReadLine());
-                    Console.WriteLine($"Enter a second age for the agespan, or just enter zero(0) to search for the first age only.");
+                    Console.Write($"Enter a second age for the agespan, or just enter zero(0) to search for the first age only.");
                     int secondAge = int.Parse(Console.ReadLine());
                     int findAge = FindCertainAge(firstAge, secondAge);
-                    Console.WriteLine("\r\n");
+                    Console.WriteLine("\n");
                     Console.WriteLine($"There are {findAge} passengers with that age or within that agespan onboard!");
-                    Console.WriteLine("\r\n");
-                    SubmenuPassengers();
+                    Console.WriteLine("\n");
+
+                    Console.WriteLine("Press any key to return to the main menu..."); 
                     break;
 
                 case ConsoleKey.S:
                     SortBusByAge();
-                    Console.WriteLine("\r\n");
+                    Console.WriteLine("\n");
                     Console.WriteLine($"Passengers were sorted by their age, select 'Current Passengers' option from the Main Menu to see the result!");
-                    Console.WriteLine("\r\n");
-                    SubmenuPassengers();
+                    Console.WriteLine("\n");
+
+                    Console.WriteLine("Press any key to return to the main menu..."); 
+                    Console.ReadKey(true);
                     break;
 
                 case ConsoleKey.B:
-                    Run();
-                    break;
+                    return;
 
                 default:
                     {
-                        Console.WriteLine("\r\n");
+                        Console.WriteLine("\n");
                         Console.WriteLine("Use only valid options!");
-                        Console.WriteLine("\r\n");
+                        Console.WriteLine("\n");
+
+                        Console.WriteLine("Press any key...");
+                        Console.ReadKey(true);
                     }
                     break;
             }
